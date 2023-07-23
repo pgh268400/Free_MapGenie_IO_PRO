@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "url": "https://mapgenie.io/elden-ring"
+      }
+    },
+    "condition": {
+      "urlFilter": "https://mapgenie.io/api/*"
+    }
+  }
+]

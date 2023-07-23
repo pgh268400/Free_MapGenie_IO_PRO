@@ -1,0 +1,51 @@
+{
+  "name": "Free_MapGenie_IO_PRO",
+  "version": "1.0",
+  "description": "This extension will run multiple scripts after the site has loaded.",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "webNavigation",
+    "webRequest",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  // 아래 host_permissions 을 주어야 declarative_net_request에서 리다이렉트 URL로 사용 가능
+  "host_permissions": ["*://*/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": false,
+        "path": "rules_1.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["map/map.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://mapgenie.io/*/maps/*"],
+      "js": [
+        "global.js",
+        "load.js",
+        "save.js",
+        "settings.js",
+        "remove.js",
+        "inject.js"
+      ]
+    }
+  ]
+}
