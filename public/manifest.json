@@ -1,5 +1,5 @@
 {
-  "name": "Free_MapGenie_IO_PRO",
+  "name": "Free MapGenie.io Pro",
   "version": "1.0",
   "description": "This extension will run multiple scripts after the site has loaded.",
   "manifest_version": 3,
@@ -31,7 +31,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["map/map.js"],
+      "resources": ["map/map.js", "category/load.js", "category/save.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -39,7 +39,7 @@
     {
       "matches": ["https://mapgenie.io/*/maps/*"],
       "js": [
-        "global.js",
+        "category.js",
         "load.js",
         "save.js",
         "settings.js",
