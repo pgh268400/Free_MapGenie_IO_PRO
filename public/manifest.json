@@ -39,12 +39,12 @@
     {
       "matches": ["https://mapgenie.io/*/maps/*"],
       "js": [
-        "category.js",
-        "load.js",
-        "save.js",
-        "settings.js",
-        "remove.js",
-        "inject.js"
+        "translate/category.js",
+        "category/load.js",
+        "category/save.js",
+        "category/settings.js",
+        "remover/remove.js",
+        "map/inject.js"
       ]
     }
   ]

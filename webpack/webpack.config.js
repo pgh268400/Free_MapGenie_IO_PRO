@@ -10,7 +10,10 @@ module.exports = {
   entry: glob
     .sync("../src/**/*.ts", { cwd: __dirname })
     .reduce(function (obj, element) {
-      const dir = element.replace("..\\src\\", "");
+      const dir = element
+        .replace("..\\src\\", "")
+        .replace("../src/", "")
+        .replace(".ts", "");
       obj[dir] = element;
       return obj;
     }, {}),
