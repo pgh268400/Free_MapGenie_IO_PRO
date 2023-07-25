@@ -168,8 +168,9 @@ namespace Maps {
           const temp_load_data = localStorage.getItem(category_key);
           if (temp_load_data !== null) {
             const parse_data = JSON.parse(temp_load_data);
-            if (!("view_found_locations" in parse_data))
-              view_found_locations = false;
+            if ("view_found_locations" in parse_data) {
+              view_found_locations = parse_data.view_found_locations;
+            }
           }
 
           // 로컬 스토리지에 기록
