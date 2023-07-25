@@ -38,11 +38,11 @@ const category_table = {
   "KEY ITEM": "",
   "MAP FRAGMENT": "",
   "MEMORY STONE": "메모리 스톤",
-  PAINTING: "",
+  PAINTING: "그림",
   REMEMBRANCE: "",
   SPELLBOOK: "",
   "STONESWORD KEY": "석검열쇠",
-  "TALISMAN POUCH": "부적 주머니",
+  "TALISMAN POUCH": "부적주머니",
   TOOL: "",
   WHETBLADE: "",
   AMMUNITION: "",
@@ -96,9 +96,28 @@ const category_table = {
   "SUMMONING SIGIL": "",
 };
 
-// for (const [key, value] of Object.entries(category_table)) {
-//   console.log(`${key}: ${value}`);
-//   document.querySelector(
-//     `#categories .group-categories .category-item .title[title="${key}"]`
-//   ).innerText = value;
-// }
+const is_translate = false;
+
+if (is_translate) {
+  for (const [key, value] of Object.entries(category_table)) {
+    // console.log(`${key}: ${value}`);
+    const category_title_element = document.querySelectorAll(
+      `#categories .group-categories .category-item .title`
+    );
+
+    if (category_title_element === null)
+      throw new Error("Cannot find category_title element");
+
+    if (value === "") continue;
+
+    for (const element of category_title_element) {
+      const _element = element as HTMLElement;
+      if (
+        _element.innerText.trim().toLowerCase() === key.trim().toLowerCase()
+      ) {
+        _element.innerText = value;
+        break;
+      }
+    }
+  }
+}
