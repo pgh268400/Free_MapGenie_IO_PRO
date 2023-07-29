@@ -13,4 +13,5 @@ namespace Inject {
 
   //body 태그의 자식으로써 map.js를 삽입한다.
   inject_script(chrome.runtime.getURL("map/map.js"), "body");
+  inject_script(chrome.runtime.getURL("web_accessible_resources.js"), "body");
 }

@@ -21,30 +21,27 @@ namespace Settings {
   사용 : MutationObserver 콜백 함수
   이유 : 그냥 체크박스 체크할려고 하니 체크박스 HTML 로딩전에 먼저 코드가 실행되어
   DOM 조작이 먹히지 않아 옵저버 패턴으로 변경함.
-*/
+  */
 
-  // 즉시 실행 함수를 사용하여 observer 변수명이 겹치지 않도록 보호함. [스코프 보호]
-  (function () {
-    // 함수 선언식 (위에 즉시 실행함수 때문에 function 키워드가 2개 중첩 되는게 싫어서
-    // 화살표 함수와 함수 선언식으로 작성함. function으로 작성해도 무방.)
-    const handle_mutation = (mutations_list: any, observer: any) => {
-      for (let mutation of mutations_list) {
-        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
-          // 요소가 생성되었을 때 체크박스 값을 true로 변경
-          const checkbox_element: any = document.getElementById(
-            "remember-categories-checkbox"
-          );
-          checkbox_element.checked = true;
-        }
+  // 함수 선언식 (위에 즉시 실행함수 때문에 function 키워드가 2개 중첩 되는게 싫어서
+  // 화살표 함수와 함수 선언식으로 작성함. function으로 작성해도 무방.)
+  const handle_mutation = (mutations_list: any, observer: any) => {
+    for (let mutation of mutations_list) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        // 요소가 생성되었을 때 체크박스 값을 true로 변경
+        const checkbox_element: any = document.getElementById(
+          "remember-categories-checkbox"
+        );
+        checkbox_element.checked = true;
       }
-    };
+    }
+  };
 
-    // MutationObserver 생성
-    var target_node = document.querySelector("body") as HTMLElement; //body querySelector는 절대로 null이 아님 (제대로 된 사이트라면)
-    var config = { childList: true, subtree: true };
-    var observer = new MutationObserver(handle_mutation);
+  // MutationObserver 생성
+  var target_node = document.querySelector("body") as HTMLElement; //body querySelector는 절대로 null이 아님 (제대로 된 사이트라면)
+  var config = { childList: true, subtree: true };
+  var observer = new MutationObserver(handle_mutation);
 
-    // 감시 시작
-    observer.observe(target_node, config);
-  })();
+  // 감시 시작
+  observer.observe(target_node, config);
 }

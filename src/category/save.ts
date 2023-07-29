@@ -1,6 +1,9 @@
 // 옵저버를 추가하여 카테고리의 상태를 저장할 수 있도록 함.
 // 카테고리가 클릭될때마다 그 값을 object로 담고 브라우저에 저장함.
 
+import { category_key } from "../module/global";
+import { CategorySaveObject } from "../types/category";
+
 namespace Save {
   const visible_text = "category-visible";
   const hidden_text = "category-hidden";
@@ -8,12 +11,6 @@ namespace Save {
   const category_items = document.querySelectorAll(
     "#categories div.group-categories > div"
   );
-
-  type CategoryVisibility = "category-visible" | "category-hidden";
-
-  type CategorySaveObject = {
-    [key: string]: CategoryVisibility;
-  };
 
   const save_data: CategorySaveObject = {};
 
@@ -48,12 +45,7 @@ namespace Save {
           // 변경된 상태를 저장
           // mapGenie 에는 여러가지 맵이 있으므로 key는 구분할 수 있도록 게임의 이름(정확히는 현재 URL)을 사용
           console.log(save_data);
-
-          const current_url = window.location.toString();
-          localStorage.setItem(
-            current_url + "/category_select_data",
-            JSON.stringify(save_data)
-          );
+          localStorage.setItem(category_key, JSON.stringify(save_data));
         }
       }
     });

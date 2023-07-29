@@ -1,5 +1,5 @@
 {
-  "name": "Free MapGenie.io Pro",
+  "name": "MapGenie Extensible",
   "version": "1.0",
   "description": "This extension will run multiple scripts after the site has loaded.",
   "manifest_version": 3,
@@ -34,7 +34,8 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["map/map.js", "category/load.js", "category/save.js"],
+      // inject.js로 인젝션 하는 스크립트들 (window 객체에 접근 하는 것들)
+      "resources": ["web_accessible_resources.js", "map/map.js"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -42,7 +43,7 @@
     {
       "matches": ["https://mapgenie.io/*/maps/*"],
       "js": [
-        "translate/category.js",
+        "module/global.js",
         "category/load.js",
         "category/save.js",
         "category/settings.js",
